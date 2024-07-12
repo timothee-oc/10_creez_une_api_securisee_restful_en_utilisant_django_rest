@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import Contributor
+from .serializers import ContributorSerializer
 
-# Create your views here.
+class ContributorViewset(ModelViewSet):
+    serializer_class = ContributorSerializer
+
+    def get_queryset(self):
+        return Contributor.objects.all()

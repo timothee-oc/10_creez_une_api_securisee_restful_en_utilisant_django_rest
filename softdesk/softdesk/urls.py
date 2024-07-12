@@ -18,11 +18,13 @@ from django.urls import path, include
 from rest_framework import routers
 from authentication.views import UserViewset
 from project.views import ProjectViewset
+from contributor.views import ContributorViewset
 
 router = routers.SimpleRouter()
 
 router.register(prefix="users", viewset=UserViewset, basename="users")
 router.register(prefix="projects", viewset=ProjectViewset, basename="projects")
+router.register(prefix="contributors", viewset=ContributorViewset, basename="contributors")
 
 urlpatterns = [
     path("api/", include(router.urls))
