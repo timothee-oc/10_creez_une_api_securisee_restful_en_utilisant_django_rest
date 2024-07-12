@@ -17,13 +17,15 @@ Including another URLconf
 from django.urls import path, include
 from rest_framework import routers
 from authentication.views import UserViewset
-from project.views import ProjectViewset
+from project.views import ProjectViewset, IssueViewset, CommentViewset
 from contributor.views import ContributorViewset
 
 router = routers.SimpleRouter()
 
 router.register(prefix="users", viewset=UserViewset, basename="users")
 router.register(prefix="projects", viewset=ProjectViewset, basename="projects")
+router.register(prefix="issues", viewset=IssueViewset, basename="issues")
+router.register(prefix="comments", viewset=CommentViewset, basename="comments")
 router.register(prefix="contributors", viewset=ContributorViewset, basename="contributors")
 
 urlpatterns = [
