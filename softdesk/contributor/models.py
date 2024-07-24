@@ -8,6 +8,4 @@ class Contributor(models.Model):
     created_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=["user", "project"], name="unique contribution")
-        ]
+        unique_together = ('user', 'project')
