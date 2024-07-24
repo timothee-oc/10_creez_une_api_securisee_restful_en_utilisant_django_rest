@@ -4,6 +4,4 @@ from .serializers import ContributorSerializer
 
 class ContributorViewset(ModelViewSet):
     serializer_class = ContributorSerializer
-
-    def get_queryset(self):
-        return Contributor.objects.all()
+    queryset = Contributor.objects.all()

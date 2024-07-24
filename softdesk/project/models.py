@@ -5,47 +5,49 @@ from authentication.models import User
 
 class Project(models.Model):
     PROJECT_TYPES = {
-        "BACKEND": "back-end",
-        "FRONTEND": "front-end",
-        "IOS": "IOS",
-        "ANDROID": "Android"
+        "backend": "back-end",
+        "frontend": "front-end",
+        "ios": "iOS",
+        "android": "Android"
     }
 
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=50)
     description = models.TextField()
-    type = models.CharField(max_length=100, choices=PROJECT_TYPES)
+    type = models.CharField(max_length=20, choices=PROJECT_TYPES)
     created_time = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Issue(models.Model):
     ISSUE_STATUS = {
-        "TODO": "To Do",
-        "INPROGRESS": "In Progress",
-        "FINISHED": "Finished"
+        "to_do": "To Do",
+        "in_progress": "In Progress",
+        "finished": "Finished"
     }
     ISSUE_PRIORITIES = {
-        "LOW": "Low",
-        "MEDIUM": "Medium",
-        "HIGH": "High"
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
     }
     ISSUE_TAGS = {
-        "BUG": "Bug",
-        "FEATURE": "Feature",
-        "TASK": "Task"
+        "bug": "Bug",
+        "feature": "Feature",
+        "task": "Task"
     }
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+
+    name = models.CharField(max_length=50)
     description = models.TextField()
-    status = models.CharField(max_length=100, choices=ISSUE_STATUS, default=ISSUE_STATUS["TODO"])
-    priority = models.CharField(max_length=100, choices=ISSUE_PRIORITIES)
-    assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='assigned_issues')
-    tag = models.CharField(max_length=100, choices=ISSUE_TAGS)
+    status = models.CharField(max_length=20, choices=ISSUE_STATUS, default="to_do")
+    priority = models.CharField(max_length=20, choices=ISSUE_PRIORITIES)
+    tag = models.CharField(max_length=20, choices=ISSUE_TAGS)
     created_time = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    assignee = models.ForeignKey(User, on_delete=models.SET_NULL)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
 class Comment(models.Model):
-    issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
-    unique_id = models.UUIDField(default=uuid4, editable=False, unique=True)
+    issue_link = models.CharField(max_length=50)
+    unique_id = models.UUIDField(default=uuid4)
     created_time = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
