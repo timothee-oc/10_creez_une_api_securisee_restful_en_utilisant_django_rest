@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from .models import Project, Issue, Comment
 from .serializers import ProjectSerializer, IssueSerializer, CommentSerializer
-from .permissions import IsAuthor
+from .permissions import IsAuthor, IsProjectAuthorForIssue
 
 class ProjectViewset(viewsets.ModelViewSet):
     queryset = Project.objects.all()
@@ -15,6 +15,11 @@ class ProjectViewset(viewsets.ModelViewSet):
 class IssueViewset(viewsets.ModelViewSet):
     queryset = Issue.objects.all()
     serializer_class = IssueSerializer
+
+    def get_permissions(self):
+        if self.action == "create":
+            self.permission_classes = [IsProjectAuthorForIssue]
+        return super().get_permissions()
 
 class CommentViewset(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
