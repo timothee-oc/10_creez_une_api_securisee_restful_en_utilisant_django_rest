@@ -1,15 +1,16 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets
 from .models import Project, Issue, Comment
 from .serializers import ProjectSerializer, IssueSerializer, CommentSerializer
 
-class ProjectViewset(ModelViewSet):
-    serializer_class = ProjectSerializer
+class ProjectViewset(viewsets.ModelViewSet):
     queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
 
-class IssueViewset(ModelViewSet):
-    serializer_class = IssueSerializer
+class IssueViewset(viewsets.ModelViewSet):
     queryset = Issue.objects.all()
+    serializer_class = IssueSerializer
 
-class CommentViewset(ModelViewSet):
-    serializer_class = CommentSerializer
+class CommentViewset(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
