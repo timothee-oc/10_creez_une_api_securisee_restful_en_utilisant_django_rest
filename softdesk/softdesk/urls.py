@@ -9,7 +9,7 @@ router.register("users", UserViewset)
 router.register("projects", ProjectViewset)
 
 projects_router = routers.NestedSimpleRouter(router, "projects", lookup="project")
-projects_router.register("issues", IssueViewset)
+projects_router.register("issues", IssueViewset, "issues")
 
 issues_router = routers.NestedSimpleRouter(projects_router, "issues")
 issues_router.register("comments", CommentViewset)

@@ -13,8 +13,11 @@ class ProjectViewset(viewsets.ModelViewSet):
         return super().get_permissions()
 
 class IssueViewset(viewsets.ModelViewSet):
-    queryset = Issue.objects.all()
     serializer_class = IssueSerializer
+
+    def get_queryset(self):
+        project_id = self.kwargs.get("project_pk")
+        return Issue.objects.filter(project_id=project_id)
 
     def get_permissions(self):
         if self.action == "create":
