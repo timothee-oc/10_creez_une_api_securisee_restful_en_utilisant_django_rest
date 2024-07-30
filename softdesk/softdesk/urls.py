@@ -8,7 +8,7 @@ router = routers.SimpleRouter()
 router.register("users", UserViewset)
 router.register("projects", ProjectViewset)
 
-projects_router = routers.NestedSimpleRouter(router, "projects")
+projects_router = routers.NestedSimpleRouter(router, "projects", lookup="project")
 projects_router.register("issues", IssueViewset)
 
 issues_router = routers.NestedSimpleRouter(projects_router, "issues")
