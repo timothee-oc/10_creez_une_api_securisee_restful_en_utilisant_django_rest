@@ -11,8 +11,8 @@ router.register("projects", ProjectViewset)
 projects_router = routers.NestedSimpleRouter(router, "projects", lookup="project")
 projects_router.register("issues", IssueViewset, "issues")
 
-issues_router = routers.NestedSimpleRouter(projects_router, "issues")
-issues_router.register("comments", CommentViewset)
+issues_router = routers.NestedSimpleRouter(projects_router, "issues", lookup="issue")
+issues_router.register("comments", CommentViewset, "comments")
 
 urlpatterns = [
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),

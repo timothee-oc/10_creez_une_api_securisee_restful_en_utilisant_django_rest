@@ -33,3 +33,15 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
+        extra_kwargs = {
+            "author": {"read_only": True},
+            "issue": {"read_only": True},
+        }
+
+    def create(self, validated_data):
+        request = self.context.get("request")
+        view = self.context.get("view")
+        issue = Issue.objects.get(id=view.kwargs.get("issue_pk"))
+        validated_data["author"] = request.user
+        validated_data["issue"] = issue
+        return super().create(validated_data)
