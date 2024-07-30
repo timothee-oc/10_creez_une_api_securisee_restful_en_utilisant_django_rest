@@ -22,6 +22,8 @@ class IssueViewset(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action == "create":
             self.permission_classes = [IsProjectAuthorForIssue]
+        elif self.action in ("update", "partial_update", "destroy"):
+            self.permission_classes = [IsAuthor]
         return super().get_permissions()
 
 class CommentViewset(viewsets.ModelViewSet):
