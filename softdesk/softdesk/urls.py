@@ -6,7 +6,7 @@ from project.views import ProjectViewset, IssueViewset, CommentViewset
 
 router = routers.SimpleRouter()
 router.register("users", UserViewset)
-router.register("projects", ProjectViewset)
+router.register("projects", ProjectViewset, "projects")
 
 projects_router = routers.NestedSimpleRouter(router, "projects", lookup="project")
 projects_router.register("issues", IssueViewset, "issues")

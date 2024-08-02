@@ -4,8 +4,10 @@ from .serializers import ProjectSerializer, IssueSerializer, CommentSerializer
 from .permissions import IsAuthor, IsProjectAuthorForIssue, IsIssueAuthorForComment
 
 class ProjectViewset(viewsets.ModelViewSet):
-    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+    def get_queryset(self):
+        return Project.objects.filter(author=self.request.user)
 
     def get_permissions(self):
         if self.action in ("update", "partial_update", "destroy"):
