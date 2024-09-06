@@ -58,5 +58,4 @@ class CommentViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         issue_id = self.kwargs.get('issue_pk')
-        project_id = self.kwargs.get('project_pk')
-        return Comment.objects.filter(issue_id=issue_id, issue__project_id=project_id) # QUESTION
+        return Comment.objects.filter(issue_id=issue_id)
