@@ -7,7 +7,7 @@
 * `cd` into the **softdesk** directory and launch the following commands:
     1. `python manage.py migrate` to build database tables
     2. `python manage.py runserver` to launch the server 
-* You can now access the api at the url [127.0.0.1:8000/](127.0.0.1:8000/)
+* You can now access the api at the url [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 
 # How to use
