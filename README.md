@@ -15,9 +15,9 @@
 * You can use a tool like [Postman](https://www.postman.com/) to make API calls
 * You should start with creating a user account with a **POST** request at [http://127.0.0.1:8000/users/](http://127.0.0.1:8000/users/)
 * Then with your account credentials, you can get your access and refresh tokens with a **POST** at [http://127.0.0.1:8000/token/](http://127.0.0.1:8000/token/)
-* You can refresh your token when it expires with a **POST** at [http://127.0.0.1:8000/token/refresh/](http://127.0.0.1:8000/token/refresh/) by providing your refresh tokens
-* You must provide your access token in the headers of any request like this : **{Authorization: "Bearer YOUR_ACCESS_TOKEN"}** 
-* Here is a list of some request you can make:
+* You can refresh your access token when it expires with a **POST** at [http://127.0.0.1:8000/token/refresh/](http://127.0.0.1:8000/token/refresh/) by providing your refresh token
+* You must provide your access token in the headers of any request, this way : **{Authorization: "Bearer YOUR_ACCESS_TOKEN"}** 
+* Here is a list of some requests you can make:
     - Create a project with a **POST** at [http://127.0.0.1:8000/projects/](http://127.0.0.1:8000/projects/)
     - Create an issue on a project with a **POST** at [http://127.0.0.1:8000/projects/<project_id>/issues/](http://127.0.0.1:8000/projects/<project_id>/issues/)
     - Read a list of all projects you contribute to with a **GET** at [http://127.0.0.1:8000/projects/](http://127.0.0.1:8000/projects/)
@@ -26,7 +26,7 @@
 
 # Important to know
 
-* You can basically do all basic CRUD operations on any ressource in the app: **Users, Projects, Contributors, Issues, Comments**
+* You can do all basic CRUD operations on any ressource in the app: **Users, Projects, Contributors, Issues, Comments**
 * Any user can create a project, they automatically become the author and a contributor of this project.
 * You need to be a contributor of a project to access it, or any ressource than references it (Issues, Contributors, Comments)
 * Only the author of a ressource can update or delete it.
