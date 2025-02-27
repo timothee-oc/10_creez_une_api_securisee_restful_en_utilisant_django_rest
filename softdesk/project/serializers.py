@@ -11,7 +11,7 @@ class ContributorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contributor
         fields = '__all__'
-        read_only_fields = ['project', 'role', 'author']
+        read_only_fields = ['user', 'project', 'role', 'author']
 
 class IssueSerializer(serializers.ModelSerializer):
     class Meta:
