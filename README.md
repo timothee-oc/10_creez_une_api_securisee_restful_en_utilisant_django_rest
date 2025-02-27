@@ -14,7 +14,7 @@
 
 * You can use a tool like [Postman](https://www.postman.com/) to make API calls
 * You should start with creating a user account with a **POST** request at [http://127.0.0.1:8000/users/](http://127.0.0.1:8000/users/)
-* Then with you account credentials, you can get your access and refresh tokens with a **POST** at [http://127.0.0.1:8000/token/](http://127.0.0.1:8000/token/)
+* Then with your account credentials, you can get your access and refresh tokens with a **POST** at [http://127.0.0.1:8000/token/](http://127.0.0.1:8000/token/)
 * You can refresh your token when it expires with a **POST** at [http://127.0.0.1:8000/token/refresh/](http://127.0.0.1:8000/token/refresh/) by providing your refresh tokens
 * You must provide your access token in the headers of any request like this : **{Authorization: "Bearer YOUR_ACCESS_TOKEN"}** 
 * Here is a list of some request you can make:
